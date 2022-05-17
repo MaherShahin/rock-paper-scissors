@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    
+    <script>
+
+        function computerPlay() {
+            let random = Math.floor(Math.random()*3);
+            switch (random) {
+                case 0:
+                    return "rock"
+                case 1:
+                    return "paper"
+                case 2:
+                    return "scissors"
+            }
+        }
+
+        function playRound(playerSelection, computerSelection){
+            if (playerSelection == computerSelection) {
+                return "It's a tie!"
+            } else if (playerSelection.toLowerCase() == "rock") {
+                if (computerSelection == "paper") {
+                    return "You lose! Paper beats rock."
+                } else {
+                    return "You win! Rock beats scissors."
+                }
+            } else if (playerSelection.toLowerCase() == "paper") {
+                if (computerSelection == "scissors") {
+                    return "You lose! Scissors beats paper."
+                } else {
+                    return "You win! Paper beats rock."
+                }
+            } else if (playerSelection.toLowerCase() == "scissors") {
+                if (computerSelection == "rock") {
+                    return "You lose! Rock beats scissors."
+                } else {
+                    return "You win! Scissors beats paper."
+                }
+            }
+            else {
+                return "Please enter a valid selection."
+               
+            }
+        }
+        
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+
+            for (let i=0; i<5; i++) {
+                let playerSelection = prompt("Rock, paper, or scissors?");
+                let computerSelection = computerPlay();
+                let result = playRound(playerSelection, computerSelection);
+                if (result.includes("win")) {
+                    playerScore++;
+                } else if (result.includes("lose")) {
+                    computerScore++;
+                }
+                alert(result);
+                console.log(result);
+                console.log("Player Score:" ,playerScore);
+                console.log("Computer Score:" ,computerScore);
+            }
+        }
+
+        game();
+
+    </script>
+
+
+</body>
+</html>
